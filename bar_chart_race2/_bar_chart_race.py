@@ -330,7 +330,7 @@ class _BarChartRace(CommonChart):
         ax.add_artist(ab2)
 
 
-    def progress_bar(progress, total, color=colorama.Fore.RED):
+    def progress_bar(self, progress, total, color=colorama.Fore.RED):
         percent = 100*(progress/float(total))
         if percent >= 25:
             color=colorama.Fore.YELLOW
