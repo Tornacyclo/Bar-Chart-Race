@@ -330,12 +330,19 @@ class _BarChartRace(CommonChart):
         ax.add_artist(ab2)
 
 
-    def progress_bar(self, progress, total, color=colorama.Fore.YELLOW):
+    def progress_bar(progress, total, color=colorama.Fore.RED):
         percent = 100*(progress/float(total))
-        bar = '█'*int(percent)+'-'*(100-int(percent))
-        print(color+f"\r|{bar}| {percent:.2f}%", end="\r")
+        if percent >= 25:
+            color=colorama.Fore.YELLOW
+        if percent >= 50:
+            color=colorama.Fore.GREEN
+        if percent >= 75:
+            color=colorama.Fore.BLUE
+        bar = '█'*int(percent)#+'―'*(100-int(percent))
+        print(color+"\rWaiting... "+f"{bar} {percent:.2f}%", end="\r")
         if progress == total:
-            print(colorama.Fore.GREEN+f"\r|{bar}| {percent:.2f}%", end="\r")
+            print(colorama.Fore.MAGENTA+"\rWaiting... Done ! "+f"{bar} {percent:.2f}%", end="\r")
+            print(colorama.Fore.RESET)
 
     
     def set_background(self, loc, length, mini, maxi, ax):
@@ -944,7 +951,6 @@ class _BarChartRace(CommonChart):
                 ret_val = anim.save(self.filename, fps=self.fps, writer=self.writer,
                                     codec='prores_ks', extra_args=['-profile:v', '4'],
                                     savefig_kwargs=savefig_kwargs)
-                print(colorama.Fore.RESET)
         except Exception as e:
             message = str(e)
             raise Exception(message)
