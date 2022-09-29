@@ -58,7 +58,7 @@ class _BarChartRace(CommonChart):
                  tick_label_font, tick_template, shared_fontdict, scale, fig, writer, 
                  bar_kwargs, fig_kwargs, filter_column_colors, 
                  img_label_folder,tick_label_mode,tick_image_mode,
-                 background, df_origin, df_bonus, minim, flag_folder):
+                 background, df_origin, df_bonus, minim, flag_folder, keys):
         self.filename = filename
         self.extension = self.get_extension()
         self.orientation = orientation
@@ -111,6 +111,7 @@ class _BarChartRace(CommonChart):
         self.df_bonus = df_bonus
         self.minim = minim
         self.flag_folder = flag_folder
+        self.keys = keys
         
 
 
@@ -228,7 +229,7 @@ class _BarChartRace(CommonChart):
         im.image.axes = ax
         
         
-        flag_name = get_image_name(list(self.df_origin.loc[self.df_origin["Prénom et nom"].str.contains(name), "Indicateur régional"])[0][-2:].lower())
+        flag_name = get_image_name(list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), "Indicateur régional"])[0][-2:].lower())
         flag = get_image_label(self.flag_folder, flag_name)
         fla = OffsetImage(flag, zoom=.5)
         fla.image.axes = ax
@@ -246,8 +247,8 @@ class _BarChartRace(CommonChart):
             self.count = 0
         
         age = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][3]
-        ech = list(self.df_origin.loc[self.df_origin['Prénom et nom'].str.contains(name), 'Échelon'])[0]
-        cat = list(self.df_origin.loc[self.df_origin['Prénom et nom'].str.contains(name), 'Catégorie'])[0]
+        ech = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[18]])[0]
+        cat = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[20]])[0]
         wins = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][0]
         losses = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][1]
         draws = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][2]
@@ -435,15 +436,15 @@ class _BarChartRace(CommonChart):
         im.image.axes = ax
         
         
-        flag_name = get_image_name(list(self.df_origin.loc[self.df_origin["Prénom et nom"].str.contains(name), "Indicateur régional"])[0][-2:].lower())
+        flag_name = get_image_name(list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), "Indicateur régional"])[0][-2:].lower())
         flag = get_image_label(self.flag_folder, flag_name)
         fla = OffsetImage(flag, zoom=.25)
         fla.image.axes = ax
         
         
         age = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][3]
-        ech = list(self.df_origin.loc[self.df_origin['Prénom et nom'].str.contains(name), 'Échelon'])[0]
-        cat = list(self.df_origin.loc[self.df_origin['Prénom et nom'].str.contains(name), 'Catégorie'])[0]
+        ech = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[18]])[0]
+        cat = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[20]])[0]
         wins = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][0]
         losses = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][1]
         draws = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][2]
@@ -971,7 +972,7 @@ def bar_chart_race(df, filename=None, orientation='h', sort='desc', n_bars=None,
                    shared_fontdict=None, scale='linear', fig=None, writer=None, bar_kwargs=None, 
                    fig_kwargs=None, filter_column_colors=False,
                    img_label_folder=None,tick_label_mode='image',tick_image_mode='trailing',
-                   background=None, df_origin=None, df_bonus=None, minim=0, flag_folder=None):
+                   background=None, df_origin=None, df_bonus=None, minim=0, flag_folder=None, keys=None):
     '''
     Create an animated bar chart race using matplotlib. Data must be in 
     'wide' format where each row represents a single time period and each 
@@ -1352,5 +1353,5 @@ def bar_chart_race(df, filename=None, orientation='h', sort='desc', n_bars=None,
                         bar_label_font, tick_label_font, tick_template, shared_fontdict, scale, 
                         fig, writer, bar_kwargs, fig_kwargs, filter_column_colors, 
                         img_label_folder,tick_label_mode,tick_image_mode,
-                        background, df_origin, df_bonus, minim,  flag_folder)
+                        background, df_origin, df_bonus, minim,  flag_folder, keys)
     return bcr.make_animation()
