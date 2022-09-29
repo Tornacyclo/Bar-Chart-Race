@@ -229,7 +229,7 @@ class _BarChartRace(CommonChart):
         im.image.axes = ax
         
         
-        flag_name = get_image_name(list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), "Indicateur régional"])[0][-2:].lower())
+        flag_name = get_image_name(list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[5]])[0][-2:].lower())
         flag = get_image_label(self.flag_folder, flag_name)
         fla = OffsetImage(flag, zoom=.5)
         fla.image.axes = ax
@@ -436,7 +436,7 @@ class _BarChartRace(CommonChart):
         im.image.axes = ax
         
         
-        flag_name = get_image_name(list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), "Indicateur régional"])[0][-2:].lower())
+        flag_name = get_image_name(list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[5]])[0][-2:].lower())
         flag = get_image_label(self.flag_folder, flag_name)
         fla = OffsetImage(flag, zoom=.25)
         fla.image.axes = ax
