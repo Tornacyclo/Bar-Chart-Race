@@ -240,7 +240,7 @@ class _BarChartRace(CommonChart):
         im.image.axes = ax
         
         
-        flag_name = get_image_name(list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[5]])[0][-2:].lower())
+        flag_name = get_image_name(list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[3]])[0][-2:].lower())
         flag = get_image_label(self.flag_folder, flag_name)
         fla = OffsetImage(flag, zoom=.5)
         fla.image.axes = ax
@@ -258,8 +258,8 @@ class _BarChartRace(CommonChart):
             self.count = 0
         
         age = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][3]
-        ech = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[0]])[0]
-        cat = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[1]])[0]
+        ech = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[1]])[0]
+        cat = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[2]])[0]
         wins = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][0]
         losses = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][1]
         draws = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][2]
@@ -292,7 +292,7 @@ class _BarChartRace(CommonChart):
                              'color': f'{cou}',
                              })
         
-        text_ab2 = AnnotationBbox(label_text2, (leng, loca), xybox=(.73, .4), frameon=False, xycoords='data',
+        text_ab2 = AnnotationBbox(label_text2, (leng, loca), xybox=(.78, .4), frameon=False, xycoords='data',
                                   boxcoords='axes fraction', pad=0, bboxprops=dict(facecolor='none', edgecolor='black', boxstyle='round,pad=1'))
         
         
@@ -492,15 +492,15 @@ class _BarChartRace(CommonChart):
         im.image.axes = ax
         
         
-        flag_name = get_image_name(list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[5]])[0][-2:].lower())
+        flag_name = get_image_name(list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[3]])[0][-2:].lower())
         flag = get_image_label(self.flag_folder, flag_name)
         fla = OffsetImage(flag, zoom=.25)
         fla.image.axes = ax
         
         
         age = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][3]
-        ech = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[0]])[0]
-        cat = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[1]])[0]
+        ech = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[1]])[0]
+        cat = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[2]])[0]
         wins = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][0]
         losses = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][1]
         draws = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][2]
@@ -562,7 +562,7 @@ class _BarChartRace(CommonChart):
 
         ax.annotate(texto,
                     xy=(len_bar, location), xycoords='data',
-                    xytext=(-len(texto)*10, -5), textcoords='offset points',
+                    xytext=(-len(texto)*8, -5), textcoords='offset points',
                     size=15,
                     weight='semibold',
                     color='#D3DCE6',
