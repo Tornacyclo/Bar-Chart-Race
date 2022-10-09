@@ -203,17 +203,28 @@ class _BarChartRace(CommonChart):
 
     def podium(self, loc, length, col, cou, ax, i):
         """
-        Creates AnnotationBbox objects to display image labels on the graph. There is a 
-        new AnnotationBbox object created at each frame. Maybe a better approach is to create
-        the original AnnotationBbox objects and then simply update them as the program runs.
         
+
         Parameters
         ----------
-        name: str
-            Filename of image file stored in `self.img_label_folder`
+        loc : TYPE
+            DESCRIPTION.
+        length : TYPE
+            DESCRIPTION.
+        col : TYPE
+            DESCRIPTION.
+        cou : TYPE
+            DESCRIPTION.
+        ax : TYPE
+            DESCRIPTION.
+        i : TYPE
+            DESCRIPTION.
+
+        Returns
+        -------
+        None.
 
         """
-        
         zipped = zip(loc, length, col, cou)
         zzipped = list(zipped)
         
@@ -247,8 +258,8 @@ class _BarChartRace(CommonChart):
             self.count = 0
         
         age = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][3]
-        ech = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[18]])[0]
-        cat = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[20]])[0]
+        ech = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[0]])[0]
+        cat = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[1]])[0]
         wins = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][0]
         losses = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][1]
         draws = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][2]
@@ -299,7 +310,7 @@ class _BarChartRace(CommonChart):
                                   boxcoords='offset points', pad=0)
         
         
-        label_text4 = TextArea(f"{age}"+"\n"+f"{ech}"+"\n"+f"{''.join([x[0].upper() for x in cat.split(' ')])}",
+        label_text4 = TextArea(f"{age}"+"\n"+f"{ech}"+"\n"+f"Work hours: {cat}",
                               {
                              'ha': 'right',
                              'va': 'center',
@@ -332,6 +343,23 @@ class _BarChartRace(CommonChart):
 
 
     def progress_bar(self, progress, total, color=colorama.Fore.RED):
+        """
+        
+
+        Parameters
+        ----------
+        progress : TYPE
+            DESCRIPTION.
+        total : TYPE
+            DESCRIPTION.
+        color : TYPE, optional
+            DESCRIPTION. The default is colorama.Fore.RED.
+
+        Returns
+        -------
+        None.
+
+        """
         percent = 100*(progress/float(total))
         if percent >= 25:
             color=colorama.Fore.YELLOW
@@ -346,24 +374,42 @@ class _BarChartRace(CommonChart):
             print(colorama.Fore.RESET)
 
     
-    def set_background(self, loc, length, mini, maxi, ax):
+    # def set_background(self, loc, length, mini, maxi, ax):
+    #     """
         
-        zipped = zip(loc, length)
-        zzipped = list(zipped)
+
+    #     Parameters
+    #     ----------
+    #     loc : TYPE
+    #         DESCRIPTION.
+    #     length : TYPE
+    #         DESCRIPTION.
+    #     mini : TYPE
+    #         DESCRIPTION.
+    #     maxi : TYPE
+    #         DESCRIPTION.
+    #     ax : TYPE
+    #         DESCRIPTION.
+
+    #     Returns
+    #     -------
+    #     None.
+
+    #     """
+    #     zipped = zip(loc, length)
+    #     zzipped = list(zipped)
         
-        maximum = max(zzipped, key=lambda x: x[0])[0]
-        minimum = min(zzipped, key=lambda x: x[0])[0]
-        # longueurmax = max(zzipped, key=lambda x: x[0])[1]
-        # longueurmin = min(zzipped, key=lambda x: x[0])[1]
+    #     maximum = max(zzipped, key=lambda x: x[0])[0]
+    #     minimum = min(zzipped, key=lambda x: x[0])[0]
+    #     # longueurmax = max(zzipped, key=lambda x: x[0])[1]
+    #     # longueurmin = min(zzipped, key=lambda x: x[0])[1]
         
-        img = plt.imread(self.background)
-        ax.imshow(img,
-                  zorder=0,
-                  extent=[mini, maxi+maxi/10, 0, maximum+maximum/self.n_bars],
-                  aspect='auto',
-                  )
-        
-        
+    #     img = plt.imread(self.background)
+    #     ax.imshow(img,
+    #               zorder=0,
+    #               extent=[mini, maxi+maxi/10, 0, maximum+maximum/self.n_bars],
+    #               aspect='auto',
+    #               )
     
     
     def offset_image(self,location,lenght,name,ax):
@@ -420,13 +466,23 @@ class _BarChartRace(CommonChart):
         Creates AnnotationBbox objects to display image labels on the graph. There is a 
         new AnnotationBbox object created at each frame. Maybe a better approach is to create
         the original AnnotationBbox objects and then simply update them as the program runs.
-        
+
         Parameters
         ----------
-        location: scalar or array
-            Coordinate of the bar (in the axis that is moving)
-        name: str
-            Filename of image file stored in `self.img_label_folder`
+        location : scalar or array
+            Coordinate of the bar (in the axis that is moving).
+        length : TYPE
+            DESCRIPTION.
+        name : str
+            Filename of image file stored in `self.img_label_folder`.
+        ax : TYPE
+            DESCRIPTION.
+        i : TYPE
+            DESCRIPTION.
+
+        Returns
+        -------
+        None.
 
         """
         #load image as an OffsetImage object
@@ -443,13 +499,13 @@ class _BarChartRace(CommonChart):
         
         
         age = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][3]
-        ech = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[18]])[0]
-        cat = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[20]])[0]
+        ech = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[0]])[0]
+        cat = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[1]])[0]
         wins = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][0]
         losses = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][1]
         draws = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][2]
         
-        texto = f"{age} | {ech} | {''.join([x[0].upper() for x in cat.split(' ')])} | Wins: {wins} | Losses: {losses} | Draws: {draws}"
+        texto = f"{age} | {ech} | Work hours: {cat} | Wins: {wins} | Losses: {losses} | Draws: {draws}"
         
         
         #renderer = self.fig.canvas.renderer
