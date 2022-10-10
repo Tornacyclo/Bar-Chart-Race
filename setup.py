@@ -10,7 +10,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="bar_chart_race2",
+    name="bcr2",
     version=version,
     author="Ted Petrou - PulsarTheStar",
     author_email="petrou.theodore@gmail.com",

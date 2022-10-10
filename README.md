@@ -7,6 +7,8 @@ Original Repo (without icons) : [https://github.com/dexplo/bar_chart_race](https
 Andres Berejnoi's Repo (with
 icons) : [https://github.com/andresberejnoi/bar_chart_race](https://github.com/andresberejnoi/bar_chart_race)
 
+
+PulsarTheStar's Repo (with 1st icon): 
 ---
 
 ## Top Computer Science Schools 2000 - 2020

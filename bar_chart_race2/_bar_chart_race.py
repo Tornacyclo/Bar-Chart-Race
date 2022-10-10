@@ -298,7 +298,7 @@ class _BarChartRace(CommonChart):
         
         label_text3 = TextArea(f"Wins: {wins}"+"\n"+f"Losses: {losses}"+"\n"+f"Draws: {draws}",
                               {
-                             # 'ha': 'right',
+                             'ha': 'left',
                              'va': 'center',
                              'size': 15,
                              'weight': 'semibold',
