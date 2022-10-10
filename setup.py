@@ -1,7 +1,7 @@
 import setuptools
 import re
 
-with open('bar_chart_race2/__init__.py', 'r') as f:
+with open('bar_chart_race/__init__.py', 'r') as f:
     for line in f:
         if line.startswith('__version__'):
             version = line.split("'")[1]
