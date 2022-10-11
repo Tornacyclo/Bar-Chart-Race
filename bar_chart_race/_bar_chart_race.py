@@ -231,7 +231,7 @@ class _BarChartRace(CommonChart):
         loca = max(zzipped, key=lambda x: x[0])[0]
         leng = max(zzipped, key=lambda x: x[0])[1]
         name = max(zzipped, key=lambda x: x[0])[2]
-        cou = max(zzipped, key=lambda x: x[0])[3]
+        col = max(zzipped, key=lambda x: x[0])[3]
         
         
         img_name = get_image_name(name)
@@ -259,7 +259,7 @@ class _BarChartRace(CommonChart):
         
         age = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][3]
         ech = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[1]])[0]
-        cat = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[2]])[0]
+        wor = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[2]])[0]
         wins = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][0]
         losses = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][1]
         draws = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][2]
@@ -278,7 +278,7 @@ class _BarChartRace(CommonChart):
                              'va': 'center',
                              'size': 30,
                              'weight': 'semibold',
-                             'color': f'{cou}',
+                             'color': f'{col}',
                              })
         text_ab1 = AnnotationBbox(label_text1, (leng, loca), xybox=(0, -680), frameon=False, xycoords='data',
                                   boxcoords='offset points', pad=0)
@@ -289,7 +289,7 @@ class _BarChartRace(CommonChart):
                              'va': 'center',
                              'size': 170,
                              'weight': 'semibold',
-                             'color': f'{cou}',
+                             'color': f'{col}',
                              })
         
         text_ab2 = AnnotationBbox(label_text2, (leng, loca), xybox=(.78, .4), frameon=False, xycoords='data',
@@ -302,7 +302,7 @@ class _BarChartRace(CommonChart):
                              'va': 'center',
                              'size': 15,
                              'weight': 'semibold',
-                             'color': f'{cou}',
+                             'color': f'{col}',
                              })
         
         
@@ -310,13 +310,13 @@ class _BarChartRace(CommonChart):
                                   boxcoords='offset points', pad=0)
         
         
-        label_text4 = TextArea(f"{age}"+"\n"+f"{ech}"+"\n"+f"Hours: {cat}",
+        label_text4 = TextArea(f"{age}"+"\n"+f"{ech}"+"\n"+f"Hours: {wor}",
                               {
                              'ha': 'right',
                              'va': 'center',
                              'size': 15,
                              'weight': 'semibold',
-                             'color': f'{cou}',
+                             'color': f'{col}',
                              })
         
         
@@ -372,7 +372,58 @@ class _BarChartRace(CommonChart):
         if progress == total:
             print(colorama.Fore.MAGENTA+"\rWaiting... Done ! "+f"{bar} {percent:.2f}%", end="\r")
             print(colorama.Fore.RESET)
+    
+    
+    def regbtohex(self, trio=tuple):
+        return '#%02x%02x%02x' % trio
 
+
+    def hextorgb(self, colour=str):
+        colour = colour.lstrip('#')
+        return tuple(int(colour[i:i+2], 16) for i in (0, 2, 4))
+
+
+    def threshold(self, colour=str):
+        """
+
+
+        Parameters
+        ----------
+        colour : TYPE, optional
+            DESCRIPTION. The default is str.
+
+        Returns
+        -------
+        str
+            DESCRIPTION.
+
+        """
+        colour = hextorgb(colour)
+        r, g, b = colour
+
+        # for c in colour:
+
+        #     c /= 255
+        #     if c <= 0.04045:
+        #         c /= 12.92
+        #     else:
+        #         c = ((c+0.055) / 1.055) ** 2.4
+
+        # L = 0.2126*r + 0.7152*g + 0.0722*b
+
+        # # if L > math.sqrt(1.05*0.05) - 0.05:
+        # if L > 0.179:
+        #     return '#000000'
+
+        # else:
+        #     return '#FFFFFF'
+
+        if (r*0.299 + g*0.587 + b*0.114) > 186:
+            return '#000000'
+
+        else:
+            return '#FFFFFF'
+    
     
     # def set_background(self, loc, length, mini, maxi, ax):
     #     """
@@ -500,12 +551,13 @@ class _BarChartRace(CommonChart):
         
         age = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][3]
         ech = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[1]])[0]
-        cat = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[2]])[0]
+        wor = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[2]])[0]
+        col = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[3]])[0]
         wins = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][0]
         losses = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][1]
         draws = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][2]
         
-        texto = f"{age} | {ech} | Work hours: {cat} | Wins: {wins} | Losses: {losses} | Draws: {draws}"
+        texto = f"{age} | {ech} | Work: {wor} | Wins: {wins} | Losses: {losses} | Draws: {draws}"
         
         
         #renderer = self.fig.canvas.renderer
@@ -565,7 +617,7 @@ class _BarChartRace(CommonChart):
                     xytext=(-len(texto)*8, -5), textcoords='offset points',
                     size=15,
                     weight='semibold',
-                    color='#D3DCE6',
+                    color=threshold(col),
                     clip_on=True,
                     )
 
