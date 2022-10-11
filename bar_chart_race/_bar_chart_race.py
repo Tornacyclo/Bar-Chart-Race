@@ -552,7 +552,7 @@ class _BarChartRace(CommonChart):
         age = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][3]
         ech = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[1]])[0]
         wor = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[2]])[0]
-        col = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[3]])[0]
+        col = list(self.df_origin.loc[self.df_origin[self.keys[0]].str.contains(name), self.keys[4]])[0]
         wins = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][0]
         losses = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][1]
         draws = list(self.df_bonus.loc[self.df_bonus["Date"].str.contains(self.str_index[i]), name])[0][2]
