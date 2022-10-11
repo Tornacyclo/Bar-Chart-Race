@@ -617,7 +617,7 @@ class _BarChartRace(CommonChart):
                     xytext=(-len(texto)*8, -5), textcoords='offset points',
                     size=15,
                     weight='semibold',
-                    color=threshold(col),
+                    color=self.threshold(col),
                     clip_on=True,
                     )
 
