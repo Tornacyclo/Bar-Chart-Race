@@ -398,7 +398,7 @@ class _BarChartRace(CommonChart):
             DESCRIPTION.
 
         """
-        colour = hextorgb(colour)
+        colour = self.hextorgb(colour)
         r, g, b = colour
 
         # for c in colour:
