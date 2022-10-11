@@ -285,7 +285,7 @@ class _BarChartRace(CommonChart):
         
         label_text2 = TextArea("1st",
                               {
-                             # 'ha': 'right',
+                             'ha': 'right',
                              'va': 'center',
                              'size': 170,
                              'weight': 'semibold',
@@ -310,7 +310,7 @@ class _BarChartRace(CommonChart):
                                   boxcoords='offset points', pad=0)
         
         
-        label_text4 = TextArea(f"{age}"+"\n"+f"{ech}"+"\n"+f"Work hours: {cat}",
+        label_text4 = TextArea(f"{age}"+"\n"+f"{ech}"+"\n"+f"Hours: {cat}",
                               {
                              'ha': 'right',
                              'va': 'center',
@@ -320,7 +320,7 @@ class _BarChartRace(CommonChart):
                              })
         
         
-        text_ab4 = AnnotationBbox(label_text4, (leng, loca), xybox=(-160, -460), frameon=False, xycoords='data',
+        text_ab4 = AnnotationBbox(label_text4, (leng, loca), xybox=(-180, -460), frameon=False, xycoords='data',
                                   boxcoords='offset points', pad=0)
         
         
