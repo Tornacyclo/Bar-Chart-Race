@@ -320,7 +320,7 @@ class _BarChartRace(CommonChart):
                              })
         
         
-        text_ab4 = AnnotationBbox(label_text4, (leng, loca), xybox=(-180, -460), frameon=False, xycoords='data',
+        text_ab4 = AnnotationBbox(label_text4, (leng, loca), xybox=(-170, -460), frameon=False, xycoords='data',
                                   boxcoords='offset points', pad=0)
         
         
