@@ -10,15 +10,15 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="bcr2",
+    name="BCR",
     version=version,
-    author="Ted Petrou - PulsarTheStar",
-    author_email="petrou.theodore@gmail.com",
-    description="Create animated bar chart races using matplotlib or plotly",
+    author="Peace Hegemony",
+    author_email="",
+    description="Create animated bar chart races using Matplotlib or Plotly",
     long_description=long_description,
     long_description_content_type="text/markdown",
     keywords="visualization animation bar chart race matplotlib pandas plotly",
-    url="https://github.com/dexplo/bar_chart_race",
+    url="https://github.com/Tornacyclo/bar_chart_race.git",
     packages=setuptools.find_packages(),
     license='MIT',
     classifiers=[

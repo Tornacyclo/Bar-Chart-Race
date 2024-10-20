@@ -1,14 +1,6 @@
 # Bar Chart Race
 
-Make animated bar and line chart races in Python with matplotlib or plotly.
-
-Original Repo (without icons) : [https://github.com/dexplo/bar_chart_race](https://github.com/dexplo/bar_chart_race)
-
-Andres Berejnoi's Repo (with
-icons) : [https://github.com/andresberejnoi/bar_chart_race](https://github.com/andresberejnoi/bar_chart_race)
-
-
-PulsarTheStar's Repo (with 1st icon) : https://github.com/Tornacyclo/bar_chart_race
+Make animated bar and line chart races in Python with Matplotlib or Plotly.
 
 ---
 
@@ -20,18 +12,10 @@ PulsarTheStar's Repo (with 1st icon) : https://github.com/Tornacyclo/bar_chart_r
 
 ## Installation
 
-First Create a New Virtual Environment & Activate It:
-
-```
-pip install virtualenv
-virtualenv venv
-.\venv\Scripts\activate
-```
-
 Install `bar_chart_race` using `pip`:
 
 ```
-pip install git+https://github.com/programiz/bar_chart_race.git@master
+pip install git+https://github.com/Tornacyclo/bar_chart_race.git
 ```
 
 You also need to install
