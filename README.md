@@ -4,7 +4,7 @@ Make animated bar and line chart races in Python with Matplotlib or Plotly.
 
 ---
 
-## Top Computer Science Schools 2000 - 2020
+## Demo
 
 ![img](demo.gif)
 
