@@ -1,11 +1,5 @@
 # Bar Chart Race
 
-Make animated bar and line chart races in Python with Matplotlib or Plotly.
-
----
-
-## Demo
-
 ![img](demo.gif)
 
 ---
